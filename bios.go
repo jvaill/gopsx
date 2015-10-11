@@ -15,17 +15,17 @@ type BIOS struct {
 }
 
 func NewBios(biosRomPath string) *BIOS {
-    b, err := ioutil.ReadFile(biosRomPath)
+    bs, err := ioutil.ReadFile(biosRomPath)
     if err != nil {
         log.Fatal("could not read bios: ", err)
     }
 
-    if len(b) != biosRomLength {
-        log.Fatal(fmt.Sprintf("expected bios to be %d bytes, got %d bytes", biosRomLength, len(b)))
+    if len(bs) != biosRomLength {
+        log.Fatal(fmt.Sprintf("expected bios to be %d bytes, got %d bytes", biosRomLength, len(bs)))
     }
 
-    log.Print(fmt.Sprintf("bios md5 checksum is 0x%x", md5.Sum(b)))
-    return &BIOS{data: b}
+    log.Print(fmt.Sprintf("bios md5 checksum is 0x%x", md5.Sum(bs)))
+    return &BIOS{data: bs}
 }
 
 func (bios BIOS) read32(offset uint32) uint32 {
