@@ -51,7 +51,9 @@ func (cpu *CPU) lui(instruction *Instruction) {
 func (cpu *CPU) decodeAndExecute(instruction *Instruction) {
     switch instruction.primaryOpcode() {
         default:
-            log.Fatal(fmt.Sprintf("unhandled instruction %s %x", instruction, instruction.primaryOpcode()))
+            log.Fatal(fmt.Sprintf(
+                "unhandled instruction %s with primary opcode 0x%x",
+                instruction, instruction.primaryOpcode()))
         case 0xD:
             cpu.ori(instruction)
         case 0xF:
