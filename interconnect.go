@@ -15,7 +15,7 @@ func NewInterconnect(bios *BIOS) *Interconnect {
     return &Interconnect{bios: bios, biosRange: biosRange}
 }
 
-func (ic Interconnect) read32(addr uint32) *uint32 {
+func (ic *Interconnect) read32(addr uint32) *uint32 {
     offset := ic.biosRange.contains(addr)
     if offset != nil {
         val := ic.bios.read32(*offset)

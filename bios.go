@@ -28,7 +28,7 @@ func NewBios(biosRomPath string) *BIOS {
     return &BIOS{data: bs}
 }
 
-func (bios BIOS) read32(offset uint32) uint32 {
+func (bios *BIOS) read32(offset uint32) uint32 {
     b0 := uint32(bios.data[offset])
     b1 := uint32(bios.data[offset + 1])
     b2 := uint32(bios.data[offset + 2])
