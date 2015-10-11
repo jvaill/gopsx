@@ -27,3 +27,11 @@ func NewBios(biosRomPath string) *BIOS {
     log.Print(fmt.Sprintf("bios md5 checksum is 0x%x", md5.Sum(b)))
     return &BIOS{data: b}
 }
+
+func (bios BIOS) read32(offset uint32) uint32 {
+    b0 := uint32(bios.data[offset])
+    b1 := uint32(bios.data[offset + 1])
+    b2 := uint32(bios.data[offset + 2])
+    b3 := uint32(bios.data[offset + 3])
+    return b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)
+}

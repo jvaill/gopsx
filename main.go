@@ -3,8 +3,9 @@ package main
 const biosRomPath = "./SCPH1001.BIN"
 
 func main() {
-    cpu := NewCpu()
     bios := NewBios(biosRomPath)
+    interconnect := NewInterconnect(bios)
+    cpu := NewCpu(interconnect)
 
-    _, _ = cpu, bios
+    cpu.run()
 }
